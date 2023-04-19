@@ -1,12 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import "./css/login.css"
+import "./css/login.css";
+import { auth, provider } from '../firebase';
 
 const Login = () => {
+
     const [id,setId]=useState({"user":"","password":""});
     const user="printsoul@gmail.com";
     const pass="printsoul";
     const navigate=useNavigate();
+    const [loginUser,setLoginUser] = useState(null);
+    
+
+    useEffect(() => {
+        auth.onAuthStateChanged((authUser) => {
+          if (authUser) {
+            setLoginUser(authUser);
+          } else {
+            setLoginUser(null);
+          }
+        });
+      }, []);
 
     const handleChange=(e)=>{
         let val=e.target.value;
@@ -27,7 +41,23 @@ const Login = () => {
             <div class="login-text">
                 <h2>Welcome!</h2>
                 <p>Create your account.<br/>For Free!</p>
-                <Link to="/login">Sign Up</Link>
+                {loginUser===null ? (
+                <button
+                  style={{borderRadius: "20px"}}
+                  onClick={() => {
+                    auth
+                      .signInWithPopup(provider)
+                      .then(function (result) {
+                        setLoginUser(result.user);
+                       navigate('/');
+                      })
+                      .catch(function (err) {
+                        alert(err.message);
+                    });
+                }}
+              >
+                Signup
+              </button>):(<></>)}
             </div>
         </div>
 

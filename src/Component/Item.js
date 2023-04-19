@@ -1,18 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { contextApp } from "../ContextApi";
+import { useDispatch } from "react-redux";
+import { setSingle } from "../store/productSlice";
 import "./css/content.css"
 // import img from "./major/img.jpg"
 const Item = ({val}) => {
-  const {setShowData}=useContext(contextApp);
+  const dispatch=useDispatch();
   // console.log(val.c[3]);
-  let imgUrl=`https://drive.google.com/uc?export=view&id=${val.c[4].v}`;
-  let Title=val.c[1].v;
-  let Brand=val.c[2].v;
-  let price=val.c[3].v;
+  // let imgUrl=`https://drive.google.com/uc?export=view&id=${val.c[4].v}`;
+  // let Title=val.c[1].v;
+  // let Brand=val.c[2].v;
+  // let price=val.c[3].v;
+  let imgUrl=`https://drive.google.com/uc?export=view&id=${val.img}`;
+  let Title=val.name;
+  let Brand=val.category;
+  let price=val.price;
   const handle=()=>{
-    
-    setShowData(val);
+    dispatch(setSingle(val))
+   
   }
   return (
     <>
@@ -23,7 +28,7 @@ const Item = ({val}) => {
             <h3>{Title}</h3>
             <h4>{Brand}</h4>
             <h2>rs {price}</h2>
-            <Link to="/item">
+            <Link to={`/itemInfo/${val.id}`}>
             <button onClick={handle}>See Details</button>
             </Link>
           </div>

@@ -7,6 +7,11 @@ body
 {
     padding: 90px 50px;
 }
+#pin{
+    padding: 5px;
+    font-size: 15px;
+    margin: 5px;
+}
 #cartContainer
 {
     display: grid;
@@ -75,6 +80,16 @@ button:hover
 button a:focus
 {
     outline: none;
+}
+.ic{
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px;
+}
+.ic:hover{
+    border: 2px solid black;
 }
 
 /* ----------------------------- MEDIA QUERY --------------------------- */

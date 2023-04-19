@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { contextApp } from "../ContextApi";
+import { useSelector } from "react-redux";
 import "./css/header.css"
+import LoginButton from "./LoginButton";
+import UserLogin from "./UserLogin";
 const Navbar=()=>{
-    const {CartCount}=useContext(contextApp);
+  const cartData=useSelector(state=>state.cartData.cartData)
 
     return(
         <>
@@ -16,24 +18,24 @@ const Navbar=()=>{
             </Link>
              </div>
                     <div id="collection">
-                    <Link to="/items">
+                    <Link to="/products">
                     <div id="clothing">CLOTHING</div>
                     </Link>
                     <Link to="/">
                     <div id="accessories">NEW LAUNCHES</div>
                     </Link>
                     </div>
+                    
                     <div id="search">
                         <i className="fas fa-search search"></i>
                         <input type="text" id="input" name="searchBox" placeholder="Search for Clothing "/>
                     </div>
                     <div id="user">
                     <Link to="/cart">
-                    <i className="fas fa-shopping-cart addedToCart"><div id="badge">{CartCount}</div></i>
+                    <i className="fas fa-shopping-cart addedToCart"><div id="badge">{cartData.length}</div></i>
                     </Link>
-                    <Link to="/login">
-                    <i className="fas fa-user-circle userIcon"></i> 
-                    </Link>
+                    {/* <UserLogin/> */}
+                    <LoginButton/>
                     </div>
             </div>
 

@@ -8,6 +8,9 @@ import ItemDetails from "./Component/ItemDetails";
 import Items from "./Component/Items";
 import OrderPlace from "./Component/OrderPlace";
 import Login from "./Component/Login";
+import Contact from "./Component/formvalidation/Contact";
+import LoginPage from "./Component/LoginPage";
+import SignUp from "./Component/SignUp";
 const App=()=>{
     
   
@@ -20,11 +23,16 @@ const App=()=>{
     <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/cart" element={<Cart/>}/>
-    <Route path="/item" element={<ItemDetails/>}/>
-    <Route path="/items" element={<Items/>}/>
+    <Route path="/itemInfo/:id" element={<ItemDetails/>}/>
+    <Route path="/products" element={<Items/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/placeorder" element={<OrderPlace/>}/>
-    
+    <Route path="/contactus" element={<Contact/>}/>
+    {/* <Route path="/Login" element={<LoginPage/>}/> */}
+    <Route path="/signUp" element={<SignUp/>}/>
+    <Route path="/yourOrder" element={<SignUp/>}/>
+    <Route path="/addProduct" element={<SignUp/>}/>
+
     </Routes>
     <Footer />
     </BrowserRouter>
